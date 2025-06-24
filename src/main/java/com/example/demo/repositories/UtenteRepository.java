@@ -1,8 +1,9 @@
 package com.example.demo.repositories;
 
-import com.example.demo.models.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.models.Utente;
 /* Classe che definisce il repository (database)  */
-public interface MyRepository extends JpaRepository<MyTable, Long> {
+public interface UtenteRepository extends JpaRepository<Utente, Long> {
     
 }
