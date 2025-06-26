@@ -13,7 +13,7 @@ public class OrganizzatoreService {
     @Autowired
     private OrganizzatoreRepository organizzatoreRepository;
 
-    public List<Organizzatore> getAllUtenti() {
+    public List<Organizzatore> getAllOrganizzatori() {
         return organizzatoreRepository.findAll();
     }
 }
