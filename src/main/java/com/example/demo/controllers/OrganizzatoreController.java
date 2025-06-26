@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/utenti")
+@RequestMapping("/api/organizzatori")
 public class OrganizzatoreController {
 
     @Autowired
     private OrganizzatoreService organizzatoreService;
 
     @GetMapping
-    public List<Organizzatore> getUtenti() {
-        return organizzatoreService.getAllUtenti();
+    public List<Organizzatore> getOrganizzatori() {
+        return organizzatoreService.getAllOrganizzatori();
     }
 }
