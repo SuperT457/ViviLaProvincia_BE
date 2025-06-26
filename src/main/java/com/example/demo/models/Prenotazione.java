@@ -3,6 +3,8 @@ package com.example.demo.models;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.models.Evento;
+import com.example.demo.models.Utente;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,24 +19,19 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
-
 public class Prenotazione {
     
     @Id
     private Long id;
-    private String username;
-    private Long evento_id;
     private LocalDateTime dataora;
 
     @ManyToOne
-    @JoinColumn(name = "evento")
-    private Organizzatore evento;
+    @JoinColumn(name = "evento_id", referencedColumnName = "id")
+    private Evento evento;
 
     @ManyToOne
-    @JoinColumn(name = "utente")
-    private Organizzatore utente;
+    @JoinColumn(name = "utente_id", referencedColumnName = "id")
+    private Utente utente;
 
 
 }

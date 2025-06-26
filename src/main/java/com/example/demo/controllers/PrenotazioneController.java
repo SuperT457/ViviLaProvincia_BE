@@ -1,4 +1,3 @@
-
 package com.example.demo.controllers;
 
 import com.example.demo.models.Prenotazione;
@@ -10,11 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/prenotazioni")
-
-
-
 public class PrenotazioneController {
-     @Autowired
+    @Autowired
     private PrenotazioneService prenotazioneService;
 
     @GetMapping
