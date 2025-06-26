@@ -27,6 +27,7 @@ public class Prenotazione {
     private String username;
     private Long evento_id;
     private LocalDateTime dataora;
+    //mannaggia
 
     @ManyToOne
     @JoinColumn(name = "evento")
