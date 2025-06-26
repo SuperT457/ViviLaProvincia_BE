@@ -15,7 +15,7 @@ import java.util.List;
 
 public class PrenotazioneController {
      @Autowired
-    private EventoService prenotazioneService;
+    private PrenotazioneService prenotazioneService;
 
     @GetMapping
     public List<Prenotazione> getPrenotazioni() {
