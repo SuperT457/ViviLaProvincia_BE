@@ -1,8 +1,8 @@
 
 package com.example.demo.controllers;
 
-import com.example.demo.models.Evento;
-import com.example.demo.services.EventoService;
+import com.example.demo.models.Prenotazione;
+import com.example.demo.services.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class PrenotazioneController {
     private EventoService prenotazioneService;
 
     @GetMapping
-    public List<Evento> getPrenotazioni() {
-        return eventoService.getAllPrenotazioni();
+    public List<Prenotazione> getPrenotazioni() {
+        return prenotazioneService.getAllPrenotazioni();
     }
 }
