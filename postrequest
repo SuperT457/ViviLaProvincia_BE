@@ -1,0 +1,8 @@
+curl -X POST http://localhost:8080/api/eventi   -H "Content-Type: application/json"   -d '{
+	"luogo": "Milano",
+       	"dataora": "2025-08-10T21:00:00",
+       	"costo": 20.5,
+       	"posti": 100,
+       	"idOrganizzatore": 1,
+       	"idCategoria": 17
+}'
