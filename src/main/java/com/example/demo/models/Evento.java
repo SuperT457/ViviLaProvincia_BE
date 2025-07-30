@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
+
 //import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -24,19 +26,21 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String luogo;
-
-    //@JsonFormat(pattern = "yyyy-MM-dd' 'HH:mm:ss")
     private LocalDateTime dataora;
-    private float costo;
-    private int posti;
+    private Double costo;
+
+    @Column(name = "n_posti")
+    private int nPosti;
 
     @ManyToOne
-    @JoinColumn(name = "organizzatore")
-    private Organizzatore organizzatore;
+    @JoinColumn(name = "organizzatore", referencedColumnName = "id")
+    private Utente organizzatore;
 
     @ManyToOne
-    @JoinColumn(name = "categoria")
+    @JoinColumn(name = "categoria", referencedColumnName = "id")
     private Categoria categoria;
+
+    //Getters e Setters
 }
