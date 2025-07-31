@@ -42,6 +42,8 @@ public class EventoController {
     public ResponseEntity<?> creaEvento(@RequestBody EventoDTO dto) {
         Evento evento = new Evento();
 
+        evento.setTitolo(dto.getTitolo());
+        evento.setDescrizione(dto.getDescrizione());
         evento.setLuogo(dto.getLuogo());
         evento.setDataora(dto.getDataora());
         evento.setCosto(dto.getCosto());

@@ -27,6 +27,8 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titolo;
+    private String descrizione;
     private String luogo;
     private LocalDateTime dataora;
     private Double costo;

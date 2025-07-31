@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventoDTO {
-    //private String titolo;
+    private String titolo;
+    private String descrizione;
     private String luogo;
     private LocalDateTime dataora;
     private double costo;
