@@ -1,12 +1,12 @@
 package com.example.demo.services;
 
 import com.example.demo.models.Evento;
-import com.example.demo.models.Organizzatore;
-import com.example.demo.models.Categoria;
 import com.example.demo.repositories.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.models.EventoDTO;
+//import com.example.demo.models.EventoDTO;
+//import com.example.demo.models.Organizzatore;
+//import com.example.demo.models.Categoria;
 
 import java.util.List;
 

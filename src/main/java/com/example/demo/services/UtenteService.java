@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import com.example.demo.models.UtenteDTO;
+
 @Service
 public class UtenteService {
 
@@ -15,5 +17,20 @@ public class UtenteService {
 
     public List<Utente> getAllUtenti() {
         return utenteRepository.findAll();
+    }
+
+    public Utente login(UtenteDTO utenteDTO){
+        Utente check = utenteRepository.findByUsername(utenteDTO.getUsername());
+
+        System.out.println("============================================");
+        System.out.println("Utente da verificare: " + check);
+        System.out.println("Utente ricevuto: " + utenteDTO);
+        System.out.println("============================================");
+
+        if (check == null || !check.getPassword().equals(utenteDTO.getPassword())){
+            throw new RuntimeException("Username o password errati");
+        }
+
+        return check;
     }
 }
