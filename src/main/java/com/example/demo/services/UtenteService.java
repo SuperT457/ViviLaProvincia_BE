@@ -33,4 +33,23 @@ public class UtenteService {
 
         return check;
     }
+
+    public Utente register(UtenteDTO newUtente){
+        System.out.println(newUtente);
+        if (newUtente.getUsername() == null || newUtente.getPassword() == null) {
+            throw new RuntimeException("Username e password sono obbligatori");
+        }
+
+        if ( utenteRepository.findByUsername(newUtente.getUsername()) != null) {
+            throw new RuntimeException("Username già esistente");
+        }
+
+        Utente utente = new Utente();
+        utente.setUsername(newUtente.getUsername());
+        utente.setPassword(newUtente.getPassword());
+        utente.setEmail(newUtente.getEmail());
+        utente.setTel(newUtente.getTel());
+
+        return utenteRepository.save(utente);
+    }
 }

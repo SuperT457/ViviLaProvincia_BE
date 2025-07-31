@@ -17,5 +17,8 @@ public class UtenteDTO {
     
     @NotBlank
     @Size(min = 8)
-    private String password;   
+    private String password;
+
+    private String email;
+    private String tel;
 }

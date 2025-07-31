@@ -31,4 +31,15 @@ public class UtenteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         } 
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody UtenteDTO newUtente) {
+        try{
+            Utente createdUtente = utenteService.register(newUtente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUtente);
+        }catch(RuntimeException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
 }
