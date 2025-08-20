@@ -34,6 +34,4 @@ public class Utente{
     @Size(min = 8)
     @JsonIgnore
     private String password;
-    
-    private String tel;
 }

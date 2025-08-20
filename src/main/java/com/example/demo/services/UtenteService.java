@@ -48,7 +48,6 @@ public class UtenteService {
         utente.setUsername(newUtente.getUsername());
         utente.setPassword(newUtente.getPassword());
         utente.setEmail(newUtente.getEmail());
-        utente.setTel(newUtente.getTel());
 
         return utenteRepository.save(utente);
     }

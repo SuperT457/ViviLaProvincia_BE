@@ -20,5 +20,4 @@ public class UtenteDTO {
     private String password;
 
     private String email;
-    private String tel;
 }
