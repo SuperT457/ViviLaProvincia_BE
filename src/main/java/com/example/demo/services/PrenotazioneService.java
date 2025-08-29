@@ -16,4 +16,8 @@ public class PrenotazioneService {
     public List<Prenotazione> getAllPrenotazioni() {
         return prenotazioneRepository.findAll();
     }
+
+    public Prenotazione createPrenotazione(Prenotazione prenotazione) {
+        return prenotazioneRepository.save(prenotazione);
+    }
 }

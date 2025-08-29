@@ -3,9 +3,13 @@ package com.example.demo.models;
 
 import java.time.LocalDateTime;
 
-import com.example.demo.models.Evento;
-import com.example.demo.models.Utente;
+import org.hibernate.annotations.CurrentTimestamp;
+
+// import com.example.demo.models.Evento;
+// import com.example.demo.models.Utente;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -22,7 +26,10 @@ import lombok.NoArgsConstructor;
 public class Prenotazione {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @CurrentTimestamp
     private LocalDateTime dataora;
 
     @ManyToOne
@@ -32,6 +39,5 @@ public class Prenotazione {
     @ManyToOne
     @JoinColumn(name = "utente_id", referencedColumnName = "id")
     private Utente utente;
-
 
 }
