@@ -29,7 +29,9 @@ public class Utente{
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
-    
+
+    private char ruolo;
+
     @NotBlank
     @Size(min = 8)
     @JsonIgnore
