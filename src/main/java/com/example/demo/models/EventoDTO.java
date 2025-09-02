@@ -15,7 +15,7 @@ public class EventoDTO {
     private String luogo;
     private LocalDateTime dataora;
     private double costo;
-    private int nPosti;
+    private int n_posti;
     private Long idOrganizzatore;
     private Long idCategoria;
 
