@@ -18,6 +18,7 @@ public class EventoDTO {
     private int n_posti;
     private Long idOrganizzatore;
     private Long idCategoria;
+    private String image_url;
 
     // getters e setters
 }

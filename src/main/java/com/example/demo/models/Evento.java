@@ -44,5 +44,7 @@ public class Evento {
     @JoinColumn(name = "categoria", referencedColumnName = "id")
     private Categoria categoria;
 
+    private String image_url;
+
     //Getters e Setters
 }

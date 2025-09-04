@@ -1,5 +1,5 @@
 package com.example.demo.controllers;
-
+        
 import com.example.demo.models.Utente;
 import com.example.demo.models.UtenteDTO;
 import com.example.demo.services.UtenteService;
@@ -21,7 +21,7 @@ public class UtenteController {
     @GetMapping
     public List<Utente> getUtenti() {
         return utenteService.getAllUtenti();
-    }
+    }   
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UtenteDTO utenteDTO){
@@ -31,7 +31,7 @@ public class UtenteController {
         }catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         } 
-    }
+    }   
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UtenteDTO newUtente) {
@@ -41,6 +41,5 @@ public class UtenteController {
         }catch(RuntimeException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-    }
-
-}
+    }   
+}       
