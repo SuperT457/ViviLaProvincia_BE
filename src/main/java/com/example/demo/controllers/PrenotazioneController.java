@@ -1,16 +1,17 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Prenotazione;
+import com.example.demo.services.EventoService;
 import com.example.demo.services.PrenotazioneService;
+import com.example.demo.services.UtenteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.models.PrenotazioneDTO;
 import com.example.demo.models.Utente;
-import com.example.demo.repositories.UtenteRepository;
 import com.example.demo.models.Evento;
-import com.example.demo.repositories.EventoRepository;
 
 
 import java.util.List;
@@ -22,10 +23,10 @@ public class PrenotazioneController {
     private PrenotazioneService prenotazioneService;
 
     @Autowired
-    private UtenteRepository utenteRepository;
+    private UtenteService utenteService;
 
     @Autowired
-    private EventoRepository eventoRepository;
+    private EventoService eventoService;
 
     @GetMapping
     public List<Prenotazione> getPrenotazioni() {
@@ -36,10 +37,9 @@ public class PrenotazioneController {
     public ResponseEntity<?> createPrenotazione(@RequestBody PrenotazioneDTO prenotazioneDTO) {
         Prenotazione p = new Prenotazione();
 
-        Utente u = utenteRepository.findById(prenotazioneDTO.getUtente_id())
-                .orElseThrow(() -> new RuntimeException("Utente non trovato"));
-        Evento e = eventoRepository.findById(prenotazioneDTO.getEvento_id())
-                .orElseThrow(() -> new RuntimeException("Evento non trovato"));
+        Utente u = utenteService.getUtenteById(prenotazioneDTO.getUtente_id());
+
+        Evento e = eventoService.getEventoById(prenotazioneDTO.getEvento_id());
 
         p.setUtente(u);
         p.setEvento(e);

@@ -15,4 +15,11 @@ public class CategoriaService {
     public List<Categoria> getAllCategorie(){
         return categoriaRepository.findAll();
     }
+
+    public Categoria getCategoriaById(Long id){
+        Categoria c = categoriaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Categoria non trovata"));
+        
+        return c;
+    }
 }

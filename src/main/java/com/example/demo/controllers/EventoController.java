@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Categoria;
+import com.example.demo.services.CategoriaService;
 import com.example.demo.models.Evento;
 import com.example.demo.models.EventoDTO;
 import com.example.demo.models.Utente;
-import com.example.demo.repositories.CategoriaRepository;
-import com.example.demo.repositories.UtenteRepository;
-import com.example.demo.repositories.EventoRepository;
 import com.example.demo.services.EventoService;
+import com.example.demo.services.UtenteService;
 
 @RestController
 @RequestMapping("/api/eventi")
@@ -31,14 +30,13 @@ public class EventoController {
     private EventoService eventoService;
 
     @Autowired
-    private UtenteRepository utenteRepository;
+    private UtenteService utenteService;
 
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    private CategoriaService categoriaService;
 
-    @Autowired
-    private EventoRepository eventoRepository;
 
+    //HTTP HANDLERS
     @GetMapping
     public ResponseEntity<List<Evento>> getAllEventi() {
         List<Evento> eventi = eventoService.getAllEventi();
@@ -47,9 +45,9 @@ public class EventoController {
     
     @GetMapping("/{id}")
     public ResponseEntity<?> getEventoById(@PathVariable("id") Long eventoId){
-        Evento evento = eventoRepository.findById(eventoId)
-	    .orElseThrow(() -> new RuntimeException("id evento non valido"));
-	return new ResponseEntity<>(evento, HttpStatus.OK); 
+        Evento evento = eventoService.getEventoById(eventoId);
+	    
+        return new ResponseEntity<>(evento, HttpStatus.OK); 
     }
 
     @PostMapping
@@ -62,10 +60,12 @@ public class EventoController {
         evento.setDataora(dto.getDataora());
         evento.setCosto(dto.getCosto());
         // recupera entità da ID
-        Utente organizzatore = utenteRepository.findById(dto.getIdOrganizzatore())
-            .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
-        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
-            .orElseThrow(() -> new RuntimeException("Categoria non trovata"));
+
+        //organizzatore
+        Utente organizzatore = utenteService.getUtenteById(dto.getIdOrganizzatore());
+        
+        //categoria
+        Categoria categoria = categoriaService.getCategoriaById(dto.getIdCategoria());
 
         evento.setOrganizzatore(organizzatore);
         evento.setCategoria(categoria);

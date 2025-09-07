@@ -1,3 +1,5 @@
+// Class UtenteDTO.java
+
 package com.example.demo.models;
 
 import jakarta.validation.constraints.NotBlank;

@@ -1,13 +1,13 @@
 package com.example.demo.services;
 
-import com.example.demo.models.Utente;
-import com.example.demo.repositories.UtenteRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+import com.example.demo.models.Utente;
 import com.example.demo.models.UtenteDTO;
+import com.example.demo.repositories.UtenteRepository;
 
 @Service
 public class UtenteService {
@@ -17,6 +17,13 @@ public class UtenteService {
 
     public List<Utente> getAllUtenti() {
         return utenteRepository.findAll();
+    }
+
+    public Utente getUtenteById(Long id){
+        Utente u = utenteRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Organizzatore non trovato"));
+        
+        return u;
     }
 
     public Utente login(UtenteDTO utenteDTO){
