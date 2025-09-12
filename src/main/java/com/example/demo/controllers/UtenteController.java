@@ -35,7 +35,8 @@ public class UtenteController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UtenteDTO newUtente) {
-        try{
+        System.out.println(newUtente);
+	try{
             Utente createdUtente = utenteService.register(newUtente);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUtente);
         }catch(RuntimeException e){

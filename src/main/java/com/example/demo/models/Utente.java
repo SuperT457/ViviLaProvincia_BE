@@ -13,6 +13,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "utente")
@@ -32,7 +33,9 @@ public class Utente{
     @Size(min = 3, max = 20)
     private String username;
 
-    private char ruolo;
+    @Column(columnDefinition = "enum('u','o') default 'u'")
+    private String ruolo = "u";
+
 
     @NotBlank
     @Size(min = 8)
