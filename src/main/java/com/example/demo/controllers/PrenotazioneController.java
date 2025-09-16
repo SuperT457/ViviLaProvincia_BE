@@ -47,7 +47,7 @@ public class PrenotazioneController {
         System.out.println("Creando prenotazione per utente ID: " + prenotazioneDTO.getUtente_id() + " e evento ID: " + prenotazioneDTO.getEvento_id());
         
         // Decrementa il numero di posti disponibili
-        eventoService.prenotaPosto(prenotazioneDTO.getEvento_id()); // all'interno del service è gestita l'eccezione se non ci sono posti 
+        eventoService.prenotaPosto(prenotazioneDTO.getEvento_id(), prenotazioneDTO.getUtente_id()); // all'interno del service è gestita l'eccezione se non ci sono posti 
 
         Utente u = utenteService.getUtenteById(prenotazioneDTO.getUtente_id());
         Evento e = eventoService.getEventoById(prenotazioneDTO.getEvento_id());

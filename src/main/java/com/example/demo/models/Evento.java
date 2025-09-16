@@ -34,7 +34,7 @@ public class Evento {
     private Double costo;
 
     @Column(name = "n_posti")
-    private int n_posti;
+    private Integer n_posti;
 
     @ManyToOne
     @JoinColumn(name = "organizzatore", referencedColumnName = "id")
