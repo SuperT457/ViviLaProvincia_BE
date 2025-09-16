@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.models.PrenotazioneDTO;
 import com.example.demo.models.Utente;
 import com.example.demo.models.Evento;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/prenotazioni")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PrenotazioneController {
     @Autowired
     private PrenotazioneService prenotazioneService;
@@ -32,16 +34,25 @@ public class PrenotazioneController {
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioneService.getAllPrenotazioni();
     }
+    
+    @GetMapping("/utente/{utenteId}")
+    public List<Prenotazione> getPrenotazioniByUserId(@PathVariable("utenteId") Long utenteId){
+    	return prenotazioneService.getPrenotazioniUtente(utenteId);
+    }
 
     @PostMapping
     public ResponseEntity<?> createPrenotazione(@RequestBody PrenotazioneDTO prenotazioneDTO) {
         Prenotazione p = new Prenotazione();
+        System.out.println(prenotazioneDTO);
+        System.out.println("Creando prenotazione per utente ID: " + prenotazioneDTO.getUtente_id() + " e evento ID: " + prenotazioneDTO.getEvento_id());
+        
+        // Decrementa il numero di posti disponibili
+        eventoService.prenotaPosto(prenotazioneDTO.getEvento_id()); // all'interno del service è gestita l'eccezione se non ci sono posti 
 
         Utente u = utenteService.getUtenteById(prenotazioneDTO.getUtente_id());
-
         Evento e = eventoService.getEventoById(prenotazioneDTO.getEvento_id());
 
-        p.setUtente(u);
+        p.setUtente(u); 
         p.setEvento(e);
 
         prenotazioneService.createPrenotazione(p);

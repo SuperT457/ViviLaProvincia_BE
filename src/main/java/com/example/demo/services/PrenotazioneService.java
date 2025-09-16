@@ -20,4 +20,8 @@ public class PrenotazioneService {
     public Prenotazione createPrenotazione(Prenotazione prenotazione) {
         return prenotazioneRepository.save(prenotazione);
     }
+
+    public List<Prenotazione> getPrenotazioniUtente(Long utenteId){
+    	return prenotazioneRepository.findByUtenteId(utenteId);
+    }
 }
