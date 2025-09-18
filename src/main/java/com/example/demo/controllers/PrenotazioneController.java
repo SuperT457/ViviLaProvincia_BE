@@ -59,4 +59,10 @@ public class PrenotazioneController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(p);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePrenotazione(@PathVariable Long id) {
+        prenotazioneService.deletePrenotazione(id);
+        return ResponseEntity.noContent().build();
+    }
 }

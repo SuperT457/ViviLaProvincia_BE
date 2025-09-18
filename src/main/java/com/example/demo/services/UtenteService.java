@@ -3,7 +3,9 @@ package com.example.demo.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.models.Utente;
 import com.example.demo.models.UtenteDTO;
@@ -35,7 +37,7 @@ public class UtenteService {
         System.out.println("============================================");
 
         if (check == null || !check.getPassword().equals(utenteDTO.getPassword())){
-            throw new RuntimeException("Username o password errati");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Username o password errati");
         }
 
         return check;
@@ -44,11 +46,11 @@ public class UtenteService {
     public Utente register(UtenteDTO newUtente){
         System.out.println(newUtente);
         if (newUtente.getUsername() == null || newUtente.getPassword() == null) {
-            throw new RuntimeException("Username e password sono obbligatori");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Username e password sono obbligatori");
         }
 
         if ( utenteRepository.findByUsername(newUtente.getUsername()) != null) {
-            throw new RuntimeException("Username già esistente");
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"Username già esistente");
         }
 
         Utente utente = new Utente();

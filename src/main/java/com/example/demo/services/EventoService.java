@@ -42,6 +42,10 @@ public class EventoService {
         return eventoRepository.save(evento);
     }
 
+    public void deleteEvento(Long id){
+        eventoRepository.deleteById(id);
+    }
+
     @Transactional
     public void prenotaPosto(Long eventoId, Long utenteId) {
         System.out.println("Chiamata a prenotaPosto per evento ID: " + eventoId);

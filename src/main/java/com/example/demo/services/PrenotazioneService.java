@@ -24,4 +24,8 @@ public class PrenotazioneService {
     public List<Prenotazione> getPrenotazioniUtente(Long utenteId){
     	return prenotazioneRepository.findByUtenteId(utenteId);
     }
+
+    public void deletePrenotazione(Long id) {
+        prenotazioneRepository.deleteById(id);
+    }
 }

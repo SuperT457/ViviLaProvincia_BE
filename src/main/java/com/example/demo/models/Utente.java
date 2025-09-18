@@ -36,6 +36,7 @@ public class Utente{
     @Column(columnDefinition = "enum('u','o') default 'u'")
     private String ruolo = "u";
 
+    private Integer punti;	
 
     @NotBlank
     @Size(min = 8)
