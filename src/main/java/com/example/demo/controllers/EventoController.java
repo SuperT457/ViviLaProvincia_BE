@@ -51,6 +51,13 @@ public class EventoController {
         return new ResponseEntity<>(evento, HttpStatus.OK); 
     }
 
+    @GetMapping("/organizzatore/{id}")
+    public ResponseEntity<?> getEventoByOrganizzatore(@PathVariable("id") Long organizzatoreId){
+        List<Evento> eventi = eventoService.getEventoByOrganizzatore(organizzatoreId);
+        
+        return new ResponseEntity<>(eventi, HttpStatus.OK); 
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvento(@PathVariable Long id) {
         eventoService.deleteEvento(id);

@@ -1,5 +1,7 @@
 package com.example.demo.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +19,5 @@ public interface EventoRepository extends JpaRepository<Evento, Long> {
     @Query("UPDATE Evento e SET e.n_posti = e.n_posti - 1 WHERE e.id = :eventoId AND e.n_posti > 0")
     int decrementaPosto(@Param("eventoId") Long eventoId);
 
+    List<Evento> findByOrganizzatoreId(Long organizzatoreId);
 }

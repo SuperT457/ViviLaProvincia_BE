@@ -46,6 +46,10 @@ public class EventoService {
         eventoRepository.deleteById(id);
     }
 
+    public List<Evento> getEventoByOrganizzatore(Long organizzatoreId){
+        return eventoRepository.findByOrganizzatoreId(organizzatoreId);
+    }
+
     @Transactional
     public void prenotaPosto(Long eventoId, Long utenteId) {
         System.out.println("Chiamata a prenotaPosto per evento ID: " + eventoId);
