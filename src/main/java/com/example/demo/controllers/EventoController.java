@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.models.Categoria;
 import com.example.demo.services.CategoriaService;
@@ -62,6 +63,22 @@ public class EventoController {
     public ResponseEntity<Void> deleteEvento(@PathVariable Long id) {
         eventoService.deleteEvento(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Evento> updateEvento(@PathVariable Long id, @RequestBody EventoDTO dto) {
+        Evento evento = eventoService.getEventoById(id);
+        if (evento == null) {
+            return ResponseEntity.notFound().build();
+        }
+        evento.setTitolo(dto.getTitolo());
+        evento.setDescrizione(dto.getDescrizione());
+        evento.setLuogo(dto.getLuogo());
+        evento.setDataora(dto.getDataora());
+        evento.setCosto(dto.getCosto());
+
+        eventoService.salva(evento);
+        return ResponseEntity.ok(evento);
     }
 
     @PostMapping
