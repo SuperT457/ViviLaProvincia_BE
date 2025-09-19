@@ -67,10 +67,12 @@ public class EventoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Evento> updateEvento(@PathVariable Long id, @RequestBody EventoDTO dto) {
+        
         Evento evento = eventoService.getEventoById(id);
         if (evento == null) {
             return ResponseEntity.notFound().build();
         }
+
         evento.setTitolo(dto.getTitolo());
         evento.setDescrizione(dto.getDescrizione());
         evento.setLuogo(dto.getLuogo());
