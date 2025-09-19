@@ -56,6 +56,7 @@ public class PrenotazioneController {
         p.setEvento(e);
 
         prenotazioneService.createPrenotazione(p);
+        utenteService.assegnaPunti(u.getId());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(p);
     }

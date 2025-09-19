@@ -11,6 +11,8 @@ import com.example.demo.models.Utente;
 import com.example.demo.models.UtenteDTO;
 import com.example.demo.repositories.UtenteRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UtenteService {
 
@@ -57,7 +59,13 @@ public class UtenteService {
         utente.setUsername(newUtente.getUsername());
         utente.setPassword(newUtente.getPassword());
         utente.setEmail(newUtente.getEmail());
+        utente.setPunti(0);
 
         return utenteRepository.save(utente);
+    }
+
+    @Transactional
+    public void assegnaPunti(Long utenteId){
+        utenteRepository.aggiungiPunti(utenteId);
     }
 }

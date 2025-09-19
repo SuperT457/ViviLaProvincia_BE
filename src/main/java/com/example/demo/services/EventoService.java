@@ -65,6 +65,8 @@ public class EventoService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente già prenotato per questo evento");
         }
         System.out.println("Posti disponibili prima della prenotazione: " + e.getN_posti());
-        eventoRepository.decrementaPosto(eventoId);
+        
+        if(e.getN_posti() != null)
+            eventoRepository.decrementaPosto(eventoId);
     }
 }

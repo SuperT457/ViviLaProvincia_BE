@@ -73,29 +73,33 @@ public class EventoController {
             return ResponseEntity.notFound().build();
         }
 
+        Categoria c = categoriaService.getCategoriaById(dto.getIdCategoria());
+
         evento.setTitolo(dto.getTitolo());
         evento.setDescrizione(dto.getDescrizione());
         evento.setLuogo(dto.getLuogo());
         evento.setDataora(dto.getDataora());
         evento.setCosto(dto.getCosto());
+        evento.setCategoria(c);
 
         eventoService.salva(evento);
         return ResponseEntity.ok(evento);
     }
 
-    @PostMapping
-    public ResponseEntity<?> creaEvento(@RequestBody EventoDTO dto) {
+    @PostMapping("/{organizzatoreId}")
+    public ResponseEntity<?> creaEvento(@PathVariable Long organizzatoreId, @RequestBody EventoDTO dto) {
         Evento evento = new Evento();
-
+	    System.out.println("================\nEVENTO RICEVUTO:\n" + dto + "\n====================\n");
         evento.setTitolo(dto.getTitolo());
         evento.setDescrizione(dto.getDescrizione());
         evento.setLuogo(dto.getLuogo());
         evento.setDataora(dto.getDataora());
         evento.setCosto(dto.getCosto());
+        evento.setN_posti(dto.getN_posti());
         // recupera entità da ID
 
         //organizzatore
-        Utente organizzatore = utenteService.getUtenteById(dto.getIdOrganizzatore());
+        Utente organizzatore = utenteService.getUtenteById(organizzatoreId);
         
         //categoria
         Categoria categoria = categoriaService.getCategoriaById(dto.getIdCategoria());
